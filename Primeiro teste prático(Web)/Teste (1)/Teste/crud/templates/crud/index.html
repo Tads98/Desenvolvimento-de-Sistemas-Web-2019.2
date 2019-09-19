@@ -1,0 +1,34 @@
+<table>
+    <thead>
+        <hr style="border-top:1px dotted #000;"/>
+         <h3>Livro de visitas</h3>
+        <tr>
+            <th>Nome</th>
+            <th>Mensagem</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for member in members %}
+        <tr>
+            <td>{{ member.nome }}</td>
+            <td>{{ member.mensagem }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br/>
+
+<form action="create" method="POST">
+    {% csrf_token %}
+
+    <div>
+        <hr style="border-top:1px dotted #000;"/>
+         <h3>Cadastre a sua mensagem</h3>
+        <label for="nome">Nome</label>
+        <input type="text" name="nome" style="width:10%;" required="required"/>
+        <label for="mensagem">Mensagem</label>
+        <input type="text" name="mensagem" style="width:30%;" required="required"/>
+        <button type="submit">Enviar</button>
+        <hr style="border-top:1px dotted #000;"/>
+    </div>
+</form>
