@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{{ commitment.schedule|date:"l, d  F  Y - H:i" }}</h1>
+    <h2>{{ commitment.description }}</h2>
+    <h3>{{ commitment.local }}</h3>
+    <a href="{% url 'agenda:index' %}">Voltar</a>
+{% endblock header %}
+    
+{% block main %}
+    {% if observations %}
+        <ul>
+            {% for observation in observations %}
+                <li>{{ observation.description_text }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Sem Observações</p>
+    {% endif %}
+
+    <form action='.' method='POST'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+        <button type="reset">Limpar</button>
+    </form>
+
+{% endblock main %}
