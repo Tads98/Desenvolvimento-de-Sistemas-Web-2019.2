@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Restaurante</title>
+  </head>
+  <body>
+    <h1>Lista de Produtos</h1>
+    {% if comandas %}
+      <ul>
+        {% for comanda in comandas %}
+          <li><a href="{% url 'polls:detalhes' comanda.id %}">
+            {{ comanda.texto }}
+          </a></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Nenhuma comanda cadastrada.</p>
+    {% endif %}
+    </br>
+    </br>
+    <h3>Cadastro de Itens de comanda</h3></br>
+    <form method="post" action="">
+     <label>IdComanda:</label><input type="number" size="10" maxlength="40" name="IdComanda" /></br>
+     <label>IdProduto:</label><input type="number" size="10" maxlength="40" name="IdProduto" /></br>
+     <label>Quantidade:</label><input type="number" size="10" maxlength="40" name="Quantidade" />
+     <input type="submit" value="Enviar">
+    </form>
+  </body>
+</html>
