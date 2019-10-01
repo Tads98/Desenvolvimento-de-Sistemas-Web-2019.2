@@ -1,11 +1,39 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-
-        </title>
-        <body>
-            
-        </body>
-    </head>
+<head>
+	<title>Sistema de Comandas</title>
+</head>
+<body>
+{% if comandas %}
+<h3>Comandas Ativas:</h3>
+<ul>
+	{% for comanda in comandas %}
+		<li>Comanda Nº({{ comanda.numero }}) na mesa {{ comanda.num_mesa }}</li>
+	{% endfor %}
+</ul>
+{% else %}
+<h3>Nenhuma comanda ativa!</h3>
+{% endif %}
+<hr/>
+<h3>Adição de NOVA comanda:</h3>
+<form method="post" action="{% url 'main:add_comanda' %}">
+	{% csrf_token %}
+	Número: <input type="text" name="numero"/><br/>
+	Mesa: <input type="text" name="num_mesa"/><br/>
+	<input type="submit" value="Adicionar Comanda">
+</form>
+<hr/>
+<h3>Adição de ITEM em comanda:</h3>
+<form method="post" action="{% url 'main:add_item' %}">
+	{% csrf_token %}
+	Produto: <select name="id_produto">
+	{% for produto in produtos %}
+		<option value="{{produto.id}}">{{produto.nome}}</option>
+	{% endfor %}
+	</select><br/>
+	Quantidade: <input type="text" name="quantidade"><br/>
+	Nº Comanda: <input type="text" name="num_comanda"><br/>
+	<input type="submit" value="Adicionar Item">
+</form>
+</body>
 </html>
