@@ -6,5 +6,10 @@
     </head>
     <body>
         <h1>This is the index page!</h1>
+        {% if user.is_authenticated %}
+        <h2>You name is: {{ user.username }}</h2>
+        {% else %}
+        <h2>You are not logged in.</h2>
+        {% endif %}
     </body>
 </html>
