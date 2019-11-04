@@ -2,20 +2,20 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Cadastro</title>
+        <title>Register</title>
     </head>
     <body>
-        <h1>Faça o seu cadastramento</h1>
+        <h1>Registration page!</h1>
         <form method="POST" action="{% url 'register' %}">
             {% csrf_token %}
 
             {% if form.errors %}
-            <p>Há um erro no formulário.</p>
+            <p>There are errors in the form!</p>
             {% endif %}
 
             {{ form }}
             
-            <input type="submit" value="Cadastre-se">
+            <input type="submit" value="Register">
         </form>
     </body>
 </html>

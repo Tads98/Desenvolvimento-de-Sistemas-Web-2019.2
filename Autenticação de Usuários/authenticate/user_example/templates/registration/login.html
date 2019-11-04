@@ -6,18 +6,18 @@
     </head>
     <body>
         {% if form.errors %}
-        <p>Os dados informados são inválidos!</p>
+        <p>There's something wrong with what you entered!</p>
         {% endif %}
 
         {% if next %}
-        <p>Você não possui permissão para acessar essa página.</p>
+        <p>Hey, you can't acess that page.</p>
         {% endif %}
 
         <form method="POST" action="{% url 'login' %}">
             {% csrf_token %}
 
-           <p>Usuário: {{ form.username }}</p>
-            <p>Senha: {{ form.password}}</p>
+           <p>Username: {{ form.username }}</p>
+            <p>Password: {{ form.password}}</p>
 
             <p><input type="submit" value="login"></p>
             <input type="hidden" name="next" value="{{ next }}">
